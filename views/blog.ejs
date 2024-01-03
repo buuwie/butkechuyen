@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - Butkechuyen</title>
+    
+    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Philosopher&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/54e93fea1b.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <%- include('./layouts/header.ejs') %>
+
+    <div class="page-wrapper">
+
+        <!-- Slider bài viết -->
+
+        <div class="post-slider">
+            <h1 class="slider-title">Bài viết thịnh hành</h1>
+            <i class="fas fa-chevron-left prev"></i>
+            <i class="fas fa-chevron-right next"></i>
+            <div class="post-wrapper">
+                <% 
+                        if(sliderPosts.length > 0) {
+                            for (let i = sliderPosts.length-1 ; i >= 0 ; i--) {
+                                %> 
+                        <div class="slider-post">
+                            <% 
+                                if (sliderPosts[i].image !== undefined && sliderPosts[i].image !== '' ) {
+    
+                            %>
+                            <img src="<%= sliderPosts[i].image %>" alt="" class="post-image">
+                            <% 
+                                }
+                                else {
+                                    %>
+                                    <img src="https://www.mooreseal.com/wp-content/uploads/2013/11/dummy-image-square.jpg" alt="" class="post-image">
+                                    <%
+                                }
+                            %>
+                            
+                            <div class="post-info">
+                                <h4><a href="/post/<%= sliderPosts[i]._id %>"><%= sliderPosts[i].title %></a></h4>
+                                <i class="far fa-user"> butkechuyen</i>
+                                    &nbsp;
+                                <i class="far fa-calendar"> </i>
+                                
+                            </div>
+                        </div>
+                        <%
+                                }
+                        
+                            }
+                            
+                        %>
+                
+            </div>
+        </div>
+
+        <!-- Nội dung page -->
+
+        <div class="content clearfix">
+            <div class="main-content">
+                <h1 class="recent-post-title">Bài viết mới nhất</h1>
+                <div class="posts">
+                        
+                    <div>
+                        <% 
+                        if(posts.length > 0) {
+                            for (let i = posts.length-1 ; i >= 0 ; i--) {
+                                %> 
+                        <div class="post" id="post-<%= posts[i]._id %>">
+                            <% 
+                                if (posts[i].image !== undefined && posts[i].image !== '' ) {
+    
+                            %>
+                            <img src="<%= posts[i].image %>" alt="" class="post-image">
+                            <% 
+                                }
+                                else {
+                                    %>
+                                    <img src="https://www.mooreseal.com/wp-content/uploads/2013/11/dummy-image-square.jpg" alt="" class="post-image">
+                                    <%
+                                }
+                            %>
+                            
+                            <div class="post-preview">
+                                <h3><a href="/post/<%= posts[i]._id %>"><%= posts[i].title %></a></h3>
+                                <i class="far fa-user"> buuwie</i>
+                                    &nbsp;
+                                <i class="far fa-calendar"> </i>
+                                <p class="preview-text">
+                                <%= posts[i].content %>
+                                    </p>
+                                <a href="/post/<%= posts[i]._id %>" class="btn read-more">Đọc thêm</a>
+                            </div>
+                        </div>
+                        <%
+                                }
+                        
+                            }
+                            else { 
+                            %>
+                                <h1>Posts not available!</h1>
+                            <%
+                            }
+                        %>
+                    </div>
+                </div>
+                
+                <div class="container mb-3">
+                    <div class="text-center">
+                        <button class="btn btn-info" onclick="getPrevious();"> < </i></button>
+                        <button class="btn btn-info" onclick="getNext();"> > </i></button>
+                    </div>
+                </div>
+            </div>
+            
+
+            <!--Sidebar-->
+            <div class="sidebar">
+                <div class="section search">
+                    <h6 class="section-title">Tìm kiếm</h6>
+                    <form action="" method="post">
+                        <input type="text" name="search-term" class="text-input" placeholder="Tìm kiếm...">
+                    </form>
+                </div>
+                <div class="section recommend-post">
+                    <h6 class="section-title">Có thể bạn muốn đọc</h6>
+                    <% 
+                        if (rmcdposts.length > 0 ) {
+                            for (let i = 0; i < rmcdposts.length; i++) {
+                                %>
+                                    <div class="recommend">
+                                        <% 
+                                            if (rmcdposts[i].image !== undefined && rmcdposts[i].image !== '') {
+                                                %>
+                                                <img src="<%= rmcdposts[i].image %>" alt="" class="recommend-image">
+                                                <%
+                                            }
+                                            else {
+                                                %>
+                                                <img src="https://www.mooreseal.com/wp-content/uploads/2013/11/dummy-image-square.jpg" alt="" class="recommend-image">
+                                                <%
+                                            }
+                                        %>
+
+                                        
+                                        <div class="recommend-info">
+                                            <h4><a href="/post/<%= posts[i]._id %>"><%= rmcdposts[i].title %></a></h4>
+                                        </div>
+                                    </div>
+                                <%
+                            }
+                            
+                        }
+                    %>
+                </div>
+
+            </div>
+        </div>
+    </div> 
+
+    <script>
+
+        var start = 0;
+        var limit = "<%= postLimit %>";
+
+        function getNext () {
+            start = start + limit;
+            $.ajax ({
+                url: "/get-posts/" + start + "/" + limit,
+                type: "GET",
+                success: function (response) {
+                    renderPost(response);
+                }
+            });
+        }
+
+        function getPrevious () {
+            start = start - limit;
+            $.ajax ({
+                url: "/get-posts/" + start + "/" + limit,
+                type: "GET",
+                success: function (response) {
+                    renderPost(response);
+                }
+            });
+        }
+
+        function renderPost(posts) {
+            if (posts.length > 0) {
+                var html = '';
+                for (let i=0; i < posts.length;i++) {
+
+                    var image = '';
+                    
+                            if (posts[i].image !== undefined && posts[i].image !== '' ) {
+ 
+                        
+                        image = `<img src="`+posts[i].image+`" alt="" class="post-image"/>`;
+                       
+                            }
+                            else {
+                               
+                                image = `<img src="images/1702316073736-iudfhgoisdufhoiu.jpg" alt="" class="post-image"/>`;
+                                
+                            }
+                        
+                    html += `
+                    
+                        <div class="post" id="post-`+posts[i]._id +`">
+                            `+image+`
+                            
+                            <div class="post-preview">
+                                <h3><a href="">`+posts[i].title+`</a></h3>
+                                <i class="far fa-user"> buuwie</i>
+                                    &nbsp;
+                                <i class="far fa-calendar"> </i>
+                                <p class="preview-text">
+                                `+posts[i].content+`
+                                    </p>
+                                <a href="/post/`+posts[i]._id +`" class="btn read-more">Đọc thêm</a>
+                            </div>
+                        </div>
+                    
+                    `;
+                }
+
+                $('.posts').html(html);
+            }
+        }
+
+        var socket = io();
+
+        socket.on("delete-post", function (postId) {
+            document.getElementById("post-"+ postId).remove();
+        });
+
+        socket.on("new_post", function(formData) {
+            var html = "";
+            var image = "https://www.mooreseal.com/wp-content/uploads/2013/11/dummy-image-square.jpg";
+            if (formData.image != '') {
+                image = formData.image;
+            }
+            html += `
+                <div>
+                    
+                    <div class="post">
+                        
+                        <img src="`+image+`" alt="" class="post-image">
+                        
+                        
+                        <div class="post-preview">
+                            <h3><a href="">`+formData.title+`</a></h3>
+                            <i class="far fa-user"> buuwie</i>
+                                &nbsp;
+                            <i class="far fa-calendar"> </i>
+                            <p class="preview-text">
+                            `+formData.content+`
+                                </p>
+                            <a href="/post/`+formData._id+`" class="btn read-more">Đọc thêm</a>
+                        </div>
+                    </div>
+                
+                </div>
+            `;  
+            $('.posts').prepend(html);
+        });
+        
+    </script>
+
+    <%- include('./layouts/footer.ejs') %>
+    <script src="../js/script.js"></script>
+    <script src="../js/ckeditor.js"></script>
+</body>
+</html>

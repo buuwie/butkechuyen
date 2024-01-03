@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quản lý bài viết</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Philosopher&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/54e93fea1b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('../layouts/adminHeader.ejs') %>
+
+    <div class="admin-wrapper">
+        <%- include('../layouts/adminSidebar.ejs') %>
+
+        <div class="admin-content">
+            <div class="content">
+                <h3 class="page-title">Quản lý bài viết</h3>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Image</th>
+                            <th>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% 
+                            if (posts.length > 0) {
+                                var i = 1;
+                                posts.forEach(function (post) {
+                                    %>
+                                    <tr>
+                                        <td><%= i++; %></td>
+                                        <td><%= post.title %></td>
+                                        <td><%= post.content %></td>
+                                        <td>
+                                            <img src="<%= post.image %>" alt="<%= post.image %>" width="100px">
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-danger deletePost" data-id="<%= post._id %>">Delete</a>
+                                        </td>
+                                        <td>
+                                            <a href="/edit-post/<%= post._id %>" class="btn btn-warning">Update</a>
+                                        </td>
+                                    </tr>
+                                    <%
+                                });
+                            } else {
+                                %>
+                                    <tr>
+                                        <td colspan="4">No posts found!</td>
+                                    </tr>
+                                <%
+                            }
+                        %>
+                    </tbody>
+                </table>
+                
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.deletePost').click(function () {
+                var postId = $(this).attr('data-id');
+                var obj = $(this);
+
+                $.ajax({
+                    url: "/delete-post",
+                    type: "POST",
+                    data: {id: postId},
+                    success: function (response) {
+                        if (response.success == true) {
+
+                            var socket = io();
+                            socket.emit("delete_post", postId);
+                            
+
+                            $(obj).parent().parent().remove();
+                            alert(response.msg);
+                        }
+                        else alert(response.msg);
+                    }
+                })
+            });
+        });
+    </script>
+
+    <%- include('../layouts/adminFooter') %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../../public/js/script.js"></script>
+    <script src="../../public/js/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+    .create( document.querySelector( '#editor' ) )
+    .catch( error => {
+        console.log( error );
+    } );
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap" rel="stylesheet">
+</body>
+</html>

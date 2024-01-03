@@ -1,0 +1,53 @@
+
+    <div class="header">
+        <a href="/blog" class = "logo">
+            <h1 class="logo-text"><span>But</span>kechuyen</h1>
+        </a>
+        <i class="fa fa-bars menu-toggle"></i>
+        <ul class="nav">
+            <li><a href = "/blog">Trang chủ</a></li>
+            <li><a href = "">Tin tức</a></li>
+            <li><a href = "">Giới thiệu</a></li>
+            <li class="login"><a class="nav-link" href="/login">Login</a></li>
+            <li class="login"><a class="nav-link" href="/register">Register</a></li>
+            <li class="logout">
+                <a class="username" id="username" href = "#">
+                <i class="fa fa-user"></i>
+                <i class="fa fa-chevron-down"></i>
+                </a>
+                <ul id="users">
+                    <li><a href="/logout" onclick="deleteCookie('user')">Đăng xuất</a></li>
+                </ul>
+            </li>
+                
+        </ul>
+    </div>
+    <script>
+        function getCookie(name) {
+          let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+          ));
+          return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+        function deleteCookie (name) {
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+        var userData = null;
+        var userId = null;
+        var username = null;
+        if(getCookie('user') === undefined){
+          document.getElementsByClassName('logout')[0].style.display = 'none';
+          document.getElementsByClassName('login')[0].style.display = 'block';
+          document.getElementsByClassName('login')[1].style.display = 'block';
+        }
+        else{
+          userData = JSON.parse(getCookie('user'));
+          userId = userData._id;
+            username = userData.name;
+          document.getElementsByClassName('logout')[0].style.display = 'block';
+          document.getElementsByClassName('login')[0].style.display = 'none';
+          document.getElementsByClassName('login')[1].style.display = 'none';
+          document.getElementById('username').innerHTML = username;
+        }
+        console.log(userId)
+      </script>

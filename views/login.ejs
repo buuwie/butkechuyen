@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Butkechuyen</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Philosopher&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/54e93fea1b.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <%- include('./layouts/header.ejs') %>
+
+    <div class="container">
+
+     
+        <div class="auth-content">
+            <form action="" method="post">
+                <h2 class="form-title">Đăng nhập</h2>
+    
+                <% 
+                if (typeof message !== 'undefined') {
+            %>
+            <p style="color: red;"><%= message %></p>
+            <% 
+                }
+            %>
+    
+                
+                <div>
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Nhập email" class="text-input" required>
+                </div>
+                <div>
+                    <label>Mật khẩu</label>
+                    <input type="password" name="password" placeholder="Nhập mật khẩu" class="text-input" required>
+                </div>
+                <div>
+                    <input type="submit" value="Đăng nhập" class="btn btn-info">
+                </div>
+                
+                <p>Chưa có tài khoản? <a href="/register">Đăng kí</a> ngay</p>
+            </form>   
+        </div>
+        <!-- <form action="" method="post">
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <input type="email" name="email" placeholder="Enter Email" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <input type="password" name="password" placeholder="Enter Password" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <input type="submit" value="Login" class="btn btn-info">
+                </div>
+            </div>
+        </form> -->
+    </div>
+
+    <%- include('./layouts/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,522 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: #f6f6f6 !important;
+    width: 100%;
+    min-width: 800px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+
+h1, h2{
+    color: #444;
+    margin: 5px;
+    font-family: Lobster;
+}
+
+
+h4 {
+    color: #444;
+    margin: 5px;
+    font-family: Philosopher;
+}
+
+h3 {
+    color: #444;
+    margin: 5px;
+    font-family: Philosopher;
+    font-size: 25px;
+}
+
+h5 {
+    color: #e0e0e0;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    margin-top: 0px;
+}
+
+h6 {
+    color: #444;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-size: 15px !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+i {
+    font-size: 12px;
+}
+
+.header {
+    background-image: url(../images/hinh-anh-mua-sao-bang-dep-nhat-3701.jpg);
+    height: 66px;
+}
+
+.header * {
+    color: white;
+}
+
+.header a {
+    text-decoration: none !important;
+}
+
+.header .logo {
+    float: left;
+    height: inherit;
+    margin-left: 2em;
+    
+}
+
+.logo-text {
+    margin: 10px;
+    font-family: Lobster;
+    color: #e0e0e0;
+    font-weight: bold;
+}
+
+.logo-text span {
+    color: #05f7ff !important;
+}
+
+.header ul {
+    float: right;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.header ul li {
+    float: left;
+    position: relative;
+}
+
+.header ul li ul {
+    position: absolute;
+    top: 66px;
+    right: 0px;
+    background-color: black;
+    display: none;
+    z-index: 88888;
+}
+
+.header ul li:hover ul {
+    display: block;
+}
+
+.header ul li a {
+    display: block;
+    padding: 21px;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+.header ul li ul li {
+    width: 100%
+}
+
+.header ul li ul li a {
+    padding: 10px;
+
+}
+
+.header ul li ul li a:hover {
+    background-color: lightyellow;
+    color: black;
+    transition: 0.2s;
+}
+
+.header ul li #users {
+    font-size: 11px;
+}
+
+.header .menu-toggle {
+    display: none;
+}
+
+.page-wrapper {
+    min-height: 100%;
+}
+
+.page-wrapper a:hover {
+    color: #006669;
+}
+
+.post-slider {
+    position: relative;
+}
+
+.slider-title {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.next {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    font-size: 2em;
+    color: #006669;
+    cursor: pointer;
+}
+
+.prev {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    font-size: 2em;
+    color: #006669;
+    cursor: pointer;
+}
+
+.slider-post .slider-image {
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.post-wrapper {
+    width: 84%;
+    overflow: hidden;
+    height: 350px;
+    margin: 0px auto;
+    padding: 10px 0px 10px 0px;
+}
+
+.slider-post {
+    background: white;
+    display: inline-block;
+    width: 300px;
+    height: 330px;
+    margin: 0px 10px;
+    border-radius: 5px;
+    box-shadow: 1rem 1rem 1rem -1rem #a0a0a033;
+}
+
+.post-info {
+    height: 130px;
+    padding: 0px 5px;
+}
+
+.content {
+    width: 90%;
+    margin: 30px auto 30px;
+}
+
+.content .main-content {
+    width: 65%;
+    float: left;
+}
+
+.content .main-content.single {
+    background: white;
+    padding: 20px 50px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    font-family: Lora;
+}
+
+.main-content.single .post-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 30px;
+}
+
+.main-content .post {
+    width: 95%;
+    height: 270px;
+    margin: 20px auto;
+    border-radius: 5px;
+    background: white;
+    position: relative;
+}
+
+
+
+.sidebar .section.topics ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    font-family: Lora;
+    border-top: 1px solid #e0e0e0;
+}
+
+.section.topics ul li a {
+    display: block;
+    padding: 15px 0px 15px 0px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s;
+}
+
+.section.topics ul li a:hover {
+    padding-left: 10px;
+    transition: all 0.3s;
+}
+
+.sidebar {
+    width: 35%;
+    float: left;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.sidebar .section {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.sidebar.single {
+    padding: 0px 20px;
+
+}
+
+.text-input {
+    padding: .7rem 1rem;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    color: #444;
+    line-height: 1.2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.btn {
+    padding: .5rem 1rem;
+    background: #006669;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.btn:hover {
+    color: white !important;
+    background: #005255;
+    transition: 0.2s;
+}
+
+.content .main-content .recent-post-title {
+    margin: 20px;
+}
+
+.post-image {
+    width: 40%;
+    height: 100%;
+    float: right;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+.post-author {
+    font-family: Philosopher;
+    font-size: 17px;
+    color: rgb(174, 174, 174);
+    font-style: italic;
+}
+
+.post-content img {
+    width: 100%;
+    height: 100%;
+}
+
+.post-preview {
+    padding: 10px;
+    width: 60%;
+    float: right;
+}
+
+.read-more {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    border: 1px solid #006669;
+    background: transparent;
+    border-radius: 0px;
+    color: #006669 !important;
+}
+
+.recommend {
+    width: 95%;
+    height: 100px;
+    margin: 20px auto;
+    border-radius: 5px;
+    background: white;
+    position: relative;
+}
+
+.recommend-image {
+    width: 30%;
+    height: 100%;
+    float: left;
+    border-radius: 5px;
+}
+
+.recommend-info {
+    padding: 10px;
+    width: 70%;
+    float: right;
+}
+
+.recommend-info i {
+    font-size: 10px !important;
+    margin-left: 5px;
+}
+
+.footer {
+    background: #444;
+    height: 230px;
+    position: relative;
+}
+
+.footer .footer-content {
+    width: 100%;
+    height: 220px;
+    background: black;
+    display: flex;
+    color: #e0e0e0;
+    font-family: Philosopher;
+    font-size: 18px;
+    line-gap-override: 10px;
+}
+
+.footer-content .footer-section {
+    flex: 1;
+    padding: 25px;
+}
+
+.about .logo-text {
+    margin-top: 0px;
+}
+
+.footer-section.contact {
+    display: flex;
+}
+
+.contact .contact-section {
+    flex: 1;
+}
+
+.contact .info span {
+    padding: 10px;
+}
+
+.contact .link ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.contact .link ul li a {
+    display: block !important;
+    padding: 5px !important;
+    font-size: 1.1em !important;
+    color: white !important;
+}
+
+.footer .footer-bottom {
+    background-image: url(../images/hinh-anh-mua-sao-bang-dep-nhat-3701.jpg);
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    bottom: 0px;
+    left: 0px;
+    padding-top: 12px;
+    font-family: Lobster;
+    color: #e0e0e0;
+    font-size: 20px;
+}
+
+.footer-bottom span {
+    color: #05f7ff;
+}
+
+@media only screen and (max-width: 1050px) {
+    .header {
+        position: relative;
+    }
+
+    .header ul {
+        width: 100%;
+        background-color: black;
+        max-height: 0px;
+        overflow: hidden;
+    }
+
+    .header ul li {
+        width: 100%;
+
+    }
+
+    .header ul li:hover {
+        background-color: lightblue;
+        color: #0000;
+        transition: 0.2s;
+    }
+
+    .header ul li ul {
+        position: static;
+        display: block;
+        width: 100%;
+        padding: 0;
+    }
+
+    .header ul li ul li a {
+        padding-left: 50px;
+    }
+
+    .header .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 1.8em;
+    }
+
+    .header .logo {
+        margin-left: .5em;
+    }
+    
+    .header .logo-text {
+        margin: 8px;
+        font-family: Lobster;
+    }
+
+    .showing {
+        max-height: 100em;
+    }
+}
+
+@media only screen and (max-width:934px) {
+
+    .footer {
+        height: auto;
+    }
+
+    .footer .footer-content {
+        height: auto;
+        flex-direction: column;
+    }
+
+    .footer .footer-section.contact {
+        height: auto;
+    }
+}
